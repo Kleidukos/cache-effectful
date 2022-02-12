@@ -1,0 +1,9 @@
+packages: ./
+
+with-compiler: ghc-8.10
+
+source-repository-package
+  type: git
+  location: https://github.com/haskell-effectful/effectful.git
+  tag: cc25dc9ef4d06c8df391ede07642d3bbfbab6aca
+  subdir: effectful effectful-core
