@@ -11,7 +11,7 @@ test: ## Run the test suite
 	@cabal test all
 
 lint: ## Run the code linter (HLint)
-	@find effectful-* -name "*.hs" | parallel -j $(PROCS) -- hlint --refactor-options="-i" --refactor {}
+	@find test src -name "*.hs" | xargs -P 12 -I {} hlint --refactor-options="-i" --refactor {}
 	@cabal-fmt -i effectful-cache.cabal
 
 help:
