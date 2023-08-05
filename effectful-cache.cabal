@@ -48,9 +48,9 @@ library
   hs-source-dirs:  src
   exposed-modules: Effectful.Cache
   build-depends:
-    , base            <=4.17
+    , base            <5
     , cache
-    , effectful-core ^>=1.0
+    , effectful-core >=1.0 && <2.3
     , hashable
 
 test-suite effectful-cache-test
