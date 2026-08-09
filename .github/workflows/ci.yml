@@ -30,10 +30,7 @@ jobs:
         printf "GHC='%s'\n" "$(sed -E 's/^([0-9]+)\.([0-9]+)\..*/\1\2/' <<<"${{matrix.ghc}}")" >>"$GITHUB_ENV"
 
     - name: Configure
-      run: |
-        mkdir -p "$HOME"/.config/nixpkgs
-        cp .github/workflows/config.nix "$HOME"/.config/nixpkgs
-        nix-shell --pure --argstr ghcVersion ${{env.GHC}} --run 'cabal update && cabal configure --enable-tests --disable-benchmarks --test-show-details=direct --disable-optimization --with-compiler="ghc-${{ matrix.ghc }}"' .github/workflows/shell.nix
+      run: nix-shell --pure --argstr ghcVersion ${{env.GHC}} --run 'cabal update && cabal configure --enable-tests --disable-benchmarks --test-show-details=direct --disable-optimization --with-compiler="ghc-${{ matrix.ghc }}"' .github/workflows/shell.nix
 
     - name: Freeze
       run: nix-shell --pure --argstr ghcVersion ${{env.GHC}} --run 'cabal freeze' .github/workflows/shell.nix

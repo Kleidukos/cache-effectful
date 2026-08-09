@@ -6,7 +6,7 @@ source .github/workflows/cpus.sh
 
 git add .
 
-find src test -name "*.hs" | parallel -j "$CPUS" -- hlint --refactor-options="-i" --refactor {}
+find src test -name "*.hs" | parallel -j "$CPUS" -- hlint {}
 
 git status
 
@@ -15,8 +15,7 @@ set +e
 git diff --exit-code
 diff_code=$?
 
-if [ $diff_code -ne 0 ]
-then
-  echo "Test Hlint failed"
-  exit 1
+if [ $diff_code -ne 0 ]; then
+	echo "Test Hlint failed"
+	exit 1
 fi

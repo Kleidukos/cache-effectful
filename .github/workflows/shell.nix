@@ -7,7 +7,6 @@ in with pkgs;
       haskell.compiler."ghc${ghcVersion}"
       cabal-install
       hlint
-      haskellPackages.apply-refact
       stylish-haskell
 
       # DB Deps
